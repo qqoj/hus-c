@@ -23,6 +23,18 @@ gem 'turbolinks'
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Use bootstrap for UI
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'autoprefixer-rails'
+
+# Simple icon set
+gem 'octicons-rails'
+
+# Tooltips and popovers depend on tether for positioning
+# source 'https://rails-assets.org' do
+#   gem 'rails-assets-tether', '>= 1.1.0'
+# end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -36,8 +48,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Testing framework
+  # Use RSpec for all tests
   gem 'rspec-rails', '~> 3.0'
+
+  # To replace default fixtures solution in tests
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :development do
