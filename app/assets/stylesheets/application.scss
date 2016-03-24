@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   font-size: 1.4rem;
   color: #e84048;
-  padding-left: 20px;
+  margin-left: 20px;
   &:hover, &:focus {
     color: darken(#e84048, 10%);
   }
