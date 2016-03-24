@@ -22,6 +22,9 @@ $border-radius: .15rem !default;
 @import "bootstrap";
 @import "octicons";
 
+$brand-color: #640000;
+$background-color: #fff;
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,17 +40,19 @@ h1, h2, h3, h4 {
 }
 
 .navbar-fixed-top {
-  background-color: #FFF;
-  border-bottom: 1px solid #e7e7e7;
+  background-color: $background-color;
+  border-bottom: 1px solid darken($background-color, 10%);
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.06);
 }
 
 .navbar-brand {
   font-weight: 700;
   font-size: 1.4rem;
-  color: #e84048;
-  margin-left: 20px;
+  background: image-url('logo.png') no-repeat;
+  background-size: 40px auto;
+  padding-left: 45px;
+  color: $brand-color;
   &:hover, &:focus {
-    color: darken(#e84048, 10%);
+    color: darken($brand-color, 10%);
   }
 }
