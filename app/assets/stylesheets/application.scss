@@ -32,6 +32,10 @@ h1, h2, h3, h4 {
   font-weight: 300;
 }
 
+.field_with_errors {
+  @extend .has-danger;
+}
+
 .navbar-fixed-top {
   background-color: #FFF;
   border-bottom: 1px solid #e7e7e7;
