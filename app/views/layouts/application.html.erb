@@ -6,9 +6,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="<%= controller_name %>" data-locale="<%= I18n.locale %>">
 
+<nav class="navbar navbar-fixed-top">
+  <a class="navbar-brand" href="/">HusC</a>
+</nav>
+
+<div class="container-fluid">
 <%= yield %>
+</div>
 
 </body>
 </html>

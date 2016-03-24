@@ -12,15 +12,12 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro);
 
-$font-size-root: 15px;
-$body-bg: #ededed;
-$text-color: #2a2a2a;
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 $font-family-monospace: 'Source Code Pro', 'Courier New', monospace !default;
-$nav-tabs-active-link-hover-bg: #FFF;
+$font-size-root: 17px;
+$body-bg: #ededed;
+$text-color: #2a2a2a;
 $border-radius: .15rem !default;
-$border-radius-sm: .15rem !default;
-$border-radius-lg: .1rem !default;
 
 @import "bootstrap";
 @import "octicons";
@@ -28,8 +25,25 @@ $border-radius-lg: .1rem !default;
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin-top: 5rem;
 }
 
 h1, h2, h3, h4 {
   font-weight: 300;
+}
+
+.navbar-fixed-top {
+  background-color: #FFF;
+  border-bottom: 1px solid #e7e7e7;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.06);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #e84048;
+  padding-left: 20px;
+  &:hover, &:focus {
+    color: darken(#e84048, 10%);
+  }
 }
