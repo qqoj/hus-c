@@ -26,14 +26,11 @@ gem 'turbolinks'
 # Use bootstrap for UI
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'autoprefixer-rails'
+# Tooltips and popovers depend on tether for positioning
+gem 'rails-assets-tether', '>= 1.1.0'
 
 # Simple icon set
 gem 'octicons-rails'
-
-# Tooltips and popovers depend on tether for positioning
-# source 'https://rails-assets.org' do
-#   gem 'rails-assets-tether', '>= 1.1.0'
-# end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
