@@ -1,7 +1,5 @@
 <h1>Blueprints</h1>
 
-<ul>
-  <% @blueprints.each do |b| %>
-      <li><%= b %></li>
-  <% end %>
-</ul>
+<% @blueprints.each do |b| %>
+    <div><%= b.name %></div>
+<% end %>
