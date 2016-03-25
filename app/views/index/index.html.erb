@@ -33,7 +33,7 @@
           <% @blueprints.each do |b| %>
               <tbody class="blueprint">
               <tr>
-                <td><%= b.name %></td>
+                <td><%= EveItem.get(b).try :name %></td>
                 <td class="mono text-xs-right">0</td>
                 <td class="mono text-xs-right">0</td>
                 <td class="mono text-xs-right">0</td>
@@ -43,7 +43,7 @@
               <tbody class="materials">
               <% b.activities['manufacturing']['materials'].each do |m| %>
                   <tr>
-                    <td><%= m['quantity'] %> x <%= EveItem.find_by(type_id: m['typeID']).try(:name) %></td>
+                    <td><%= m['quantity'] %> x <%= EveItem.get(m).try :name %></td>
                     <td class="mono text-xs-right">0</td>
                     <td class="mono text-xs-right">0</td>
                     <td class="mono text-xs-right">0</td>
