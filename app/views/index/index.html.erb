@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="card">
       <div class="card-block">
         <%= form_tag search_path do %>
@@ -11,6 +11,10 @@
       </div>
     </div>
   </div>
+  <div class="col-md-4">
+    <div>Rifter Blueprint</div>
+    <div>Probe Blueprint</div>
+  </div>
 </div>
 
 <% if @blueprints %>
@@ -21,21 +25,32 @@
           <thead>
           <tr>
             <th>Name</th>
-            <th>Material cost</th>
-            <th>Sell price</th>
-            <th>Profit</th>
+            <th class="text-xs-right">Material cost</th>
+            <th class="text-xs-right">Sell price</th>
+            <th class="text-xs-right">Profit</th>
           </tr>
           </thead>
-          <tbody>
           <% @blueprints.each do |b| %>
+              <tbody class="blueprint">
               <tr>
                 <td><%= b.name %></td>
-                <td class="mono">0</td>
-                <td class="mono">0</td>
-                <td class="mono">0</td>
+                <td class="mono text-xs-right">0</td>
+                <td class="mono text-xs-right">0</td>
+                <td class="mono text-xs-right">0</td>
               </tr>
+              </tbody>
+
+              <tbody class="materials">
+              <% b.activities['manufacturing']['materials'].each do |m| %>
+                  <tr>
+                    <td><%= m['quantity'] %> x <%= EveName.get(m) %></td>
+                    <td class="mono text-xs-right">0</td>
+                    <td class="mono text-xs-right">0</td>
+                    <td class="mono text-xs-right">0</td>
+                  </tr>
+              <% end %>
+              </tbody>
           <% end %>
-          </tbody>
         </table>
       </div>
     </div>

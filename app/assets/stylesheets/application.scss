@@ -14,7 +14,7 @@
 
 $font-family-sans-serif: 'Source Sans Pro', sans-serif;
 $font-family-monospace: 'Source Code Pro', 'Courier New', monospace !default;
-$font-size-root: 17px;
+$font-size-root: 15px;
 $body-bg: #ededed;
 $text-color: #2a2a2a;
 $border-radius: .15rem !default;
@@ -60,4 +60,11 @@ h1, h2, h3, h4 {
 .mono {
   font-family: $font-family-monospace;
   white-space: nowrap;
+}
+
+tbody.blueprint {
+  tr {
+    background-color: #f7f7f7;
+    font-weight: 600;
+  }
 }
