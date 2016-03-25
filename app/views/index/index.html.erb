@@ -43,7 +43,7 @@
               <tbody class="materials">
               <% b.activities['manufacturing']['materials'].each do |m| %>
                   <tr>
-                    <td><%= m['quantity'] %> x <%= EveName.get(m) %></td>
+                    <td><%= m['quantity'] %> x <%= EveItem.get(m).try(:name) %></td>
                     <td class="mono text-xs-right">0</td>
                     <td class="mono text-xs-right">0</td>
                     <td class="mono text-xs-right">0</td>

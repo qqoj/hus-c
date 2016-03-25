@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325163939) do
+ActiveRecord::Schema.define(version: 20160325190612) do
 
   create_table "blueprints", force: :cascade do |t|
     t.integer "type_id"
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20160325163939) do
 
   add_index "blueprints", ["type_id"], name: "index_blueprints_on_type_id", unique: true
 
-  create_table "eve_names", force: :cascade do |t|
+  create_table "eve_items", force: :cascade do |t|
     t.integer "type_id"
-    t.string  "value"
+    t.string  "name"
   end
 
-  add_index "eve_names", ["type_id"], name: "index_eve_names_on_type_id", unique: true
+  add_index "eve_items", ["type_id"], name: "index_eve_items_on_type_id", unique: true
 
 end

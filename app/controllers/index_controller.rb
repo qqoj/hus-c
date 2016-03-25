@@ -6,7 +6,7 @@ class IndexController < ApplicationController
     @blueprints = params[:value]
                       .lines
                       .map(&:strip)
-                      .map { |line| EveName.where(value: line).to_a }
+                      .map { |line| EveItem.where(name: line).to_a }
                       .flatten
                       .map { |name| Blueprint.find_by type_id: name.type_id }
                       .uniq
