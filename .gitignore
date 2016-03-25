@@ -18,3 +18,6 @@
 
 # Ignore all project files
 /.idea
+
+# Ignore eve databases
+/db/eve/*
