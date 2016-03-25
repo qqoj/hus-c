@@ -18,5 +18,7 @@
 //= require_tree .
 
 $(document).on('ready page:load', function () {
-
+    $('#index').find('tbody.blueprint').on('click', function () {
+        $('tbody.materials').filter('[data-type-id=' + $(this).data('type-id') + ']').toggleClass('hidden')
+    });
 });

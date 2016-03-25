@@ -1,19 +1,15 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-block">
-        <%= form_tag search_path do %>
-            <%= text_area_tag :value, nil, class: 'form-control' %>
-            <div class="m-t-1">
-              <%= submit_tag 'Search', class: 'btn btn-primary form-control' %>
-            </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div>Rifter Blueprint</div>
-    <div>Probe Blueprint</div>
+<div class="card">
+  <div class="card-block">
+    <%= form_tag search_path do %>
+        <%= text_area_tag :value, "
+Carbonized Lead S Blueprint	1	Projectile Ammo Blueprint			0,01 m3
+Proton S Blueprint	1	Projectile Ammo Blueprint			0,01 m3
+Warrior II Blueprint
+", class: 'form-control' %>
+        <div class="m-t-1">
+          <%= submit_tag 'Search', class: 'btn btn-primary' %>
+        </div>
+    <% end %>
   </div>
 </div>
 
@@ -31,27 +27,25 @@
           </tr>
           </thead>
           <% @blueprints.each do |b| %>
-              <% eve_item = EveItem.get(b) %>
               <% cost = b.cost %>
-              <% price = eve_item.try(:price) %>
-              <tbody class="blueprint">
+              <% sell_for = b.sell_for %>
+              <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
-                <td><%= EveItem.get(b).try :name %></td>
+                <td><%= b.products.map { |p| "#{p['quantity']} x #{EveItem.get(p).try :name}" }.join %></td>
                 <td class="mono text-xs-right"><%= number_to_currency cost %></td>
-                <td class="mono text-xs-right"><%= price ? number_to_currency(price) : '-' %></td>
-                <td class="mono text-xs-right"><%= price ? number_to_currency(price - cost) : '-' %></td>
+                <td class="mono text-xs-right"><%= number_to_currency(sell_for) %></td>
+                <td class="mono text-xs-right"><%= number_to_currency(sell_for - cost) %></td>
               </tr>
               </tbody>
 
-              <tbody class="materials">
+              <tbody class="materials hidden" data-type-id="<%= b.type_id %>">
               <% b.materials.each do |m| %>
                   <% eve_item = EveItem.get(m) %>
                   <% quantity = m['quantity'] %>
                   <tr>
                     <td><%= quantity %> x <%= eve_item.try :name %></td>
                     <td class="mono text-xs-right"><%= eve_item.try(:price) ? number_to_currency(quantity * eve_item.price) : '-' %></td>
-                    <td class="mono text-xs-right"></td>
-                    <td class="mono text-xs-right"></td>
+                    <td colspan="2"></td>
                   </tr>
               <% end %>
               </tbody>

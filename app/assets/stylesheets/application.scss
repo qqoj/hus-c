@@ -63,8 +63,13 @@ h1, h2, h3, h4 {
 }
 
 tbody.blueprint {
+  cursor: pointer;
   tr {
     background-color: #f7f7f7;
     font-weight: 600;
   }
+}
+
+.hidden {
+  display: none;
 }
