@@ -32,6 +32,9 @@ gem 'rails-assets-tether', '>= 1.1.0'
 # Simple icon set
 gem 'octicons-rails'
 
+# Load data from yaml files
+gem 'active_hash'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
