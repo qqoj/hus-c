@@ -1,5 +1,42 @@
-<h1>Blueprints</h1>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-block">
+        <%= form_tag search_path do %>
+            <%= text_area_tag :value, nil, class: 'form-control' %>
+            <div class="m-t-1">
+              <%= submit_tag 'Search', class: 'btn btn-primary form-control' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% @blueprints.each do |b| %>
-    <div><%= b.name %></div>
+<% if @blueprints %>
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title">Blueprints</h3>
+        <table class="table table-hover table-sm m-b-0">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Material cost</th>
+            <th>Sell price</th>
+            <th>Profit</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @blueprints.each do |b| %>
+              <tr>
+                <td><%= b.name %></td>
+                <td class="mono">0</td>
+                <td class="mono">0</td>
+                <td class="mono">0</td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
 <% end %>
