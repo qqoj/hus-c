@@ -33,13 +33,13 @@
           <% @blueprints.each do |b| %>
               <% eve_item = EveItem.get(b) %>
               <% cost = b.cost %>
-              <% price = eve_item.try :price %>
+              <% price = eve_item.try(:price) %>
               <tbody class="blueprint">
               <tr>
                 <td><%= EveItem.get(b).try :name %></td>
-                <td class="mono text-xs-right"><%= cost %></td>
-                <td class="mono text-xs-right"><%= price %></td>
-                <td class="mono text-xs-right"><%= price - cost %></td>
+                <td class="mono text-xs-right"><%= number_to_currency cost %></td>
+                <td class="mono text-xs-right"><%= price ? number_to_currency(price) : '-' %></td>
+                <td class="mono text-xs-right"><%= price ? number_to_currency(price - cost) : '-' %></td>
               </tr>
               </tbody>
 
@@ -49,7 +49,7 @@
                   <% quantity = m['quantity'] %>
                   <tr>
                     <td><%= quantity %> x <%= eve_item.try :name %></td>
-                    <td class="mono text-xs-right"><%= quantity * eve_item.try(:price) %></td>
+                    <td class="mono text-xs-right"><%= eve_item.try(:price) ? number_to_currency(quantity * eve_item.price) : '-' %></td>
                     <td class="mono text-xs-right"></td>
                     <td class="mono text-xs-right"></td>
                   </tr>

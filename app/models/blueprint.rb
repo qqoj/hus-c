@@ -7,7 +7,7 @@ class Blueprint < ActiveRecord::Base
 
   def cost
     materials.reduce(0) do |a, m|
-      a + m['quantity'] * EveItem.get(m).try(:price)
+      a + m['quantity'] * (EveItem.get(m).try(:price) || 0)
     end
   end
 end
