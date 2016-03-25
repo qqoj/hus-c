@@ -5,11 +5,11 @@ class IndexController < ApplicationController
   def search
     @blueprints = params[:value]
                       .lines
-                      .select { |l| l =~ /Blueprint/ }
-                      .map { |l| l.split("\t").first }
-                      .map { |line| EveItem.where(name: line).to_a }
+                      .map { |l| l.strip.split("\t").first }
+                      .compact
+                      .map { |l| EveItem.where(name: "#{l.gsub(/ Blueprint/, '')} Blueprint").to_a }
                       .flatten
-                      .map { |name| Blueprint.find_by type_id: name.type_id }
+                      .map { |i| Blueprint.find_by type_id: i.type_id }
                       .uniq
     render :index
   end
