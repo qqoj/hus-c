@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325190612) do
+ActiveRecord::Schema.define(version: 20160325191317) do
 
   create_table "blueprints", force: :cascade do |t|
     t.integer "type_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160325190612) do
   create_table "eve_items", force: :cascade do |t|
     t.integer "type_id"
     t.string  "name"
+    t.decimal "price"
+    t.decimal "volume"
   end
 
   add_index "eve_items", ["type_id"], name: "index_eve_items_on_type_id", unique: true
