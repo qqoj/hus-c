@@ -25,3 +25,13 @@ Deploy
 > bundle install --without development test
 > RAILS_ENV=production bundle exec rake restart
 ```
+
+Stories
+=======
+
+- Copy-paste blueprints and list them
+
+For each blueprint:
+- Show material cost
+- Show sell price
+- Show profit per hour
