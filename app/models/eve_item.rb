@@ -4,7 +4,6 @@ class EveItem < ActiveRecord::Base
   end
 
   def price(type = nil)
-    # EveCentralPrice.get(type_id)[type] rescue
-    read_attribute :price
+    EveCentralPrice.get(type_id)[type] rescue read_attribute :price
   end
 end
