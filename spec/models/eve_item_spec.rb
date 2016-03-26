@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EveItem, type: :model do
   describe "get" do
-    before :each do
+    before(:each) do
       @eve_item = create :eve_item
     end
 
@@ -12,11 +12,11 @@ RSpec.describe EveItem, type: :model do
     end
 
     it "typeID from hash" do
-      expect(EveItem.get({typeID: 1}.stringify_keys)).to eq(@eve_item)
+      expect(EveItem.get({typeID: @eve_item.type_id}.stringify_keys)).to eq(@eve_item)
     end
 
     it "type_id method" do
-      expect(EveItem.get(build(:blueprint, type_id: 1))).to eq(@eve_item)
+      expect(EveItem.get(build(:blueprint, type_id: @eve_item.type_id))).to eq(@eve_item)
     end
   end
 end

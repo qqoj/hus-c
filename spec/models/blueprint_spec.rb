@@ -32,4 +32,36 @@ RSpec.describe Blueprint, type: :model do
       expect(blueprint.cost).to eq 7.3
     end
   end
+
+  describe "products" do
+    it "can be missing" do
+      expect(build(:blueprint, activities: {}).products).to eq []
+    end
+
+    it "are found from activities" do
+      expect(build(:blueprint, activities: {
+          manufacturing: {products: [1, 2, 3]}.stringify_keys
+      }.stringify_keys).products).to eq [1, 2, 3]
+    end
+  end
+
+  describe "sell_for" do
+    it "uses products" do
+      create :eve_item, type_id: 1, price: 1.1
+      create :eve_item, type_id: 2, price: 1.2
+      create :eve_item, type_id: 3, price: 1.3
+      create :eve_item, type_id: 5, price: 100
+
+      blueprint = build(:blueprint)
+      products = [
+          {typeID: 1, quantity: 2}.stringify_keys,
+          {typeID: 2, quantity: 1}.stringify_keys,
+          {typeID: 3, quantity: 3}.stringify_keys,
+          {typeID: 4, quantity: 1}.stringify_keys,
+          {typeID: 5, quantity: 0}.stringify_keys,
+      ]
+      allow(blueprint).to receive(:products).and_return products
+      expect(blueprint.sell_for).to eq 7.3
+    end
+  end
 end
