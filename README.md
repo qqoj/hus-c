@@ -27,3 +27,4 @@ $ git pull && bundle install --without development test && RAILS_ENV=production 
 - Show material cost
 - Show sell price
 - Show profit per hour
+- Use market prices

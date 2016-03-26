@@ -32,6 +32,9 @@ gem 'rails-assets-tether', '>= 1.1.0'
 # Simple icon set
 gem 'octicons-rails'
 
+# HTTP client
+gem 'rest-client'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
