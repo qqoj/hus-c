@@ -8,8 +8,8 @@ RSpec.describe Blueprint, type: :model do
 
     it "are found from activities" do
       expect(build(:blueprint, activities: {
-          manufacturing: {materials: [1, 2, 3]}.stringify_keys
-      }.stringify_keys).materials).to eq [1, 2, 3]
+          manufacturing: {materials: [1, 2, 3]}
+      }).materials).to eq [1, 2, 3]
     end
   end
 
@@ -22,11 +22,11 @@ RSpec.describe Blueprint, type: :model do
 
       blueprint = build(:blueprint)
       materials = [
-          {typeID: 1, quantity: 2}.stringify_keys,
-          {typeID: 2, quantity: 1}.stringify_keys,
-          {typeID: 3, quantity: 3}.stringify_keys,
-          {typeID: 4, quantity: 1}.stringify_keys,
-          {typeID: 5, quantity: 0}.stringify_keys,
+          {typeID: 1, quantity: 2},
+          {typeID: 2, quantity: 1},
+          {typeID: 3, quantity: 3},
+          {typeID: 4, quantity: 1},
+          {typeID: 5, quantity: 0},
       ]
       allow(blueprint).to receive(:materials).and_return materials
       expect(blueprint.cost).to eq 7.3
@@ -40,8 +40,8 @@ RSpec.describe Blueprint, type: :model do
 
     it "are found from activities" do
       expect(build(:blueprint, activities: {
-          manufacturing: {products: [1, 2, 3]}.stringify_keys
-      }.stringify_keys).products).to eq [1, 2, 3]
+          manufacturing: {products: [1, 2, 3]}
+      }).products).to eq [1, 2, 3]
     end
   end
 
@@ -54,11 +54,11 @@ RSpec.describe Blueprint, type: :model do
 
       blueprint = build(:blueprint)
       products = [
-          {typeID: 1, quantity: 2}.stringify_keys,
-          {typeID: 2, quantity: 1}.stringify_keys,
-          {typeID: 3, quantity: 3}.stringify_keys,
-          {typeID: 4, quantity: 1}.stringify_keys,
-          {typeID: 5, quantity: 0}.stringify_keys,
+          {typeID: 1, quantity: 2},
+          {typeID: 2, quantity: 1},
+          {typeID: 3, quantity: 3},
+          {typeID: 4, quantity: 1},
+          {typeID: 5, quantity: 0},
       ]
       allow(blueprint).to receive(:products).and_return products
       expect(blueprint.sell_for).to eq 7.3

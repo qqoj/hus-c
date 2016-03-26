@@ -15,17 +15,13 @@ FactoryGirl.define do
 
     type_id
     activities { {
-        manufacturing: {
-            products: [
-                {quantity: 1, typeID: generate(:type_id)}.stringify_keys
-            ]
-        }.stringify_keys
-    }.stringify_keys }
+        manufacturing: {products: [{quantity: 1, typeID: generate(:type_id)}]}
+    } }
     limit 1
 
     after(:create) do |blueprint, evaluator|
       create(:eve_item, type_id: blueprint.type_id, name: "#{evaluator.name} Blueprint")
-      create(:eve_item, type_id: blueprint.products.first['typeID'], name: "#{evaluator.name}")
+      create(:eve_item, type_id: blueprint.products.first[:typeID], name: "#{evaluator.name}")
     end
   end
 end

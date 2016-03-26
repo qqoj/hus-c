@@ -9,7 +9,7 @@ class EveItem < ActiveRecord::Base
     def type_id(query)
       case query
         when Hash
-          return query['typeID']
+          return query[:typeID]
         when Blueprint
           return query.type_id
         else

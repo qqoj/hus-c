@@ -12,7 +12,7 @@ RSpec.describe EveItem, type: :model do
     end
 
     it "typeID from hash" do
-      expect(EveItem.get({typeID: @eve_item.type_id}.stringify_keys)).to eq(@eve_item)
+      expect(EveItem.get({typeID: @eve_item.type_id})).to eq(@eve_item)
     end
 
     it "type_id method" do
