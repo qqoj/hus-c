@@ -23,11 +23,11 @@
           </tr>
           </thead>
           <% @blueprints.each do |b| %>
-              <% cost = b.cost %>
-              <% sell_for = b.sell_for %>
               <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
                 <td><%= b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %></td>
+                <% cost = b.cost %>
+                <% sell_for = b.sell_for %>
                 <td class="mono text-xs-right"><%= number_to_currency(cost) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(sell_for) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(sell_for - cost) %></td>
@@ -36,11 +36,12 @@
 
               <tbody class="materials hidden" data-type-id="<%= b.type_id %>">
               <% b.materials.each do |m| %>
-                  <% eve_item = EveItem.get(m[:typeID]) %>
-                  <% quantity = m[:quantity] %>
                   <tr>
+                    <% eve_item = EveItem.get(m[:typeID]) %>
+                    <% price = eve_item.try :price %>
+                    <% quantity = m[:quantity] %>
                     <td><%= quantity %> x <%= eve_item.try :name %></td>
-                    <td class="mono text-xs-right"><%= eve_item.try(:price) ? number_to_currency(quantity * eve_item.price) : '-' %></td>
+                    <td class="mono text-xs-right"><%= price ? number_to_currency(quantity * price) : '-' %></td>
                     <td colspan="2"></td>
                   </tr>
               <% end %>
