@@ -73,3 +73,9 @@ tbody.blueprint {
 .hidden {
   display: none;
 }
+
+.table {
+  thead th {
+    border-top: 0;
+  }
+}
