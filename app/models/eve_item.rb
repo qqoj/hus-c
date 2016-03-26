@@ -1,20 +1,7 @@
 class EveItem < ActiveRecord::Base
-  class << self
-    def get(query)
-      self.find_by type_id: type_id(query)
-    end
+  include TypeId
 
-    private
-
-    def type_id(query)
-      case query
-        when Hash
-          return query[:typeID]
-        when Blueprint
-          return query.type_id
-        else
-          return nil
-      end
-    end
+  def self.get(query)
+    self.find_by type_id: type_id(query)
   end
 end
