@@ -4,6 +4,7 @@ class EveCentralPrice
     {
         buy: response[:buy][:median],
         sell: response[:sell][:median],
+        all: response[:all][:median],
     }
   end
 end

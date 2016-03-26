@@ -13,7 +13,7 @@ RSpec.describe Blueprint, type: :model do
     end
   end
 
-  describe "cost" do
+  describe "materials_buy" do
     it "uses materials" do
       create :eve_item, type_id: 1, price: 1.1
       create :eve_item, type_id: 2, price: 1.2
@@ -29,7 +29,7 @@ RSpec.describe Blueprint, type: :model do
           {typeID: 5, quantity: 0},
       ]
       allow(blueprint).to receive(:materials).and_return materials
-      expect(blueprint.cost).to eq 7.3
+      expect(blueprint.materials_buy).to eq 7.3
     end
   end
 
@@ -45,7 +45,7 @@ RSpec.describe Blueprint, type: :model do
     end
   end
 
-  describe "sell_for" do
+  describe "products_sell" do
     it "uses products" do
       create :eve_item, type_id: 1, price: 1.1
       create :eve_item, type_id: 2, price: 1.2
@@ -61,7 +61,7 @@ RSpec.describe Blueprint, type: :model do
           {typeID: 5, quantity: 0},
       ]
       allow(blueprint).to receive(:products).and_return products
-      expect(blueprint.sell_for).to eq 7.3
+      expect(blueprint.products_sell).to eq 7.3
     end
   end
 end
