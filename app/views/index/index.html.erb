@@ -13,10 +13,13 @@
     <div class="card">
       <div class="card-block">
         <h3 class="card-title">Blueprints</h3>
-        <table class="table table-hover table-sm m-b-0">
+        <table id="blueprints" class="table table-hover table-sm m-b-0">
           <thead>
           <tr>
             <th>Name</th>
+            <th class="text-muted">Time</th>
+            <th class="text-xs-right text-muted">Volume</th>
+            <th class="text-xs-right text-muted">Volume/Hour</th>
             <th class="text-xs-right">Material cost</th>
             <th class="text-xs-right">Sell price</th>
             <th class="text-xs-right">Profit</th>
@@ -24,15 +27,23 @@
           </tr>
           </thead>
           <% @blueprints.each do |b| %>
+
+              <% time = b.activities[:manufacturing][:time].to_f %>
+              <% materials_buy = b.materials_buy %>
+              <% products_sell = b.products_sell %>
+              <% products_volume = b.products.reduce(0) { |a, p| a + p[:quantity] * (EveItem.get(p[:typeID]).try(:volume) || 0) } %>
+              <% product_names = b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %>
+
               <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
-                <td><%= b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %></td>
-                <% materials_buy = b.materials_buy %>
-                <% products_sell = b.products_sell %>
+                <td><%= product_names %></td>
+                <td class="text-muted"><%= distance_of_time_in_words time %></td>
+                <td class="mono text-xs-right text-muted"><%= products_volume %> m³</td>
+                <td class="mono text-xs-right text-muted"><%= products_volume * 3600 / time %> m³</td>
                 <td class="mono text-xs-right"><%= number_to_currency(materials_buy) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(products_sell) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(products_sell - materials_buy) %></td>
-                <td class="mono text-xs-right"><%= number_to_currency((products_sell - materials_buy) * 3600 / b.activities[:manufacturing][:time]) %></td>
+                <td class="mono text-xs-right"><%= number_to_currency((products_sell - materials_buy) * 3600 / time) %></td>
               </tr>
               </tbody>
 
@@ -43,6 +54,9 @@
                     <% price = EveItem.get(m[:typeID]).try(:price, :buy) %>
                     <% quantity = m[:quantity] %>
                     <td><%= quantity %> x <%= eve_item.try :name %></td>
+                    <td></td>
+                    <td class="mono text-xs-right text-muted"><%= eve_item ? (quantity * eve_item.volume) : '-' %> m³</td>
+                    <td class="mono text-xs-right text-muted"><%= eve_item ? (quantity * eve_item.volume * 3600 / time) : '-' %> m³</td>
                     <td class="mono text-xs-right"><%= price ? number_to_currency(quantity * price) : '-' %></td>
                     <td colspan="3"></td>
                   </tr>

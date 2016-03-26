@@ -29,3 +29,4 @@ $ git pull && bundle install --without development test && RAILS_ENV=production 
 + Show profit per hour
 + Use market prices
 - Sort all blueprints by profit
++ Show materials m3 and m3 per hour

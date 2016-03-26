@@ -35,6 +35,9 @@ gem 'octicons-rails'
 # HTTP client
 gem 'rest-client'
 
+# Precise distance of time
+gem 'dotiw'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
