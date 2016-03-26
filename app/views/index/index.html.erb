@@ -1,12 +1,7 @@
 <div class="card">
   <div class="card-block">
     <%= form_tag search_path do %>
-        <%= text_area_tag :value, "
-Carbonized Lead S Blueprint	1	Projectile Ammo Blueprint			0,01 m3
-Proton S Blueprint	1	Projectile Ammo Blueprint			0,01 m3
-Warrior II Blueprint
-Vexor
-", class: 'form-control' %>
+        <%= text_area_tag :value, example_search, class: 'form-control' %>
         <div class="m-t-1">
           <%= submit_tag 'Search', class: 'btn btn-primary' %>
         </div>
