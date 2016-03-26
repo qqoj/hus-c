@@ -23,8 +23,9 @@ $ git pull && bundle install --without development test && RAILS_ENV=production 
 
 ## Stories
 
-- Copy-paste blueprints and list them
-- Show material cost
-- Show sell price
-- Show profit per hour
-- Use market prices
++ Copy-paste blueprints and list them
++ Show material cost
++ Show sell price
++ Show profit per hour
++ Use market prices
+- Sort all blueprints by profit
