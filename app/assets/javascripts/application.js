@@ -23,7 +23,8 @@ $(document).on('ready page:load', function () {
         $('tbody.materials').filter('[data-type-id=' + $(this).data('type-id') + ']').toggleClass('hidden')
     });
 
-    $('#system').on('change', function () {
-        Cookies.set('system', $(this).val());
-    }).val(Cookies.get('system')).trigger('change');
+    var system = $('#system');
+    system.on('change', function () {
+        Cookies.set('system', $(this).val())
+    }).val(Cookies.get('system') || $(system).val()).trigger('change');
 });
