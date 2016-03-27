@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
+  include PriceHelper
+
   LIMIT = 10
 
   def index
@@ -8,7 +10,7 @@ class IndexController < ApplicationController
     results = search_by(params[:value])
     flash[:notice] = "Too many blueprints, showing first #{LIMIT}" if results.size > LIMIT
     @blueprints = results[0..LIMIT-1]
-                      .each { |b| b.system = cookies[:system] }
+                      .each { |b| b.price_options = price_options }
                       .sort_by { |b| -b.per_hour(b.profit) }
     render :index
   end

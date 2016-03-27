@@ -16,6 +16,11 @@ Extract the [SDE](https://developers.eveonline.com/resource/resources) pack to d
 $ RAILS_ENV=production bundle exec rake db:migrate db:seed
 ```
 
+### Clear price cache
+```
+$ RAILS_ENV=production bundle exec rake tmp:cache:clear
+```
+
 ### Deploy
 ```
 $ git pull && bundle install --without development test && RAILS_ENV=production bundle exec rake restart

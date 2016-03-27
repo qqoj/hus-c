@@ -10,4 +10,13 @@ module ApplicationHelper
                            ['Sasta', 30000005],
                        ], 30002187
   end
+
+  def available_prices(type)
+    options_for_select [
+                           %w(Min min),
+                           %w(Max max),
+                           %w(Median median),
+                           %w(Average avg),
+                       ], {buy: 'max', sell: 'min'}[type]
+  end
 end

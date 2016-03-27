@@ -3,10 +3,10 @@ class EveItem < ActiveRecord::Base
     self.find_by type_id: type_id
   end
 
-  def price(type=nil, system=nil)
+  def price(type=nil, options=nil)
     begin
-      raise unless type && system
-      EveCentralPrice.get(type_id, system)[type]
+      raise unless type && options
+      EveCentralPrice.get(type_id, options)[type]
     rescue
       read_attribute :price
     end
