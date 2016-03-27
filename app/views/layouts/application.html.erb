@@ -10,6 +10,12 @@
 
 <nav class="navbar navbar-fixed-top">
   <a class="navbar-brand" href="/">HUS-C</a>
+
+  <form class="form-inline pull-xs-right">
+    <label class="m-r-1">System</label>
+    <%= select_tag :system, available_systems, class: 'c-select' %>
+  </form>
+
 </nav>
 
 <div class="container-fluid">

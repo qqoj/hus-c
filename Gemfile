@@ -38,6 +38,9 @@ gem 'rest-client'
 # Precise distance of time
 gem 'dotiw'
 
+# System selection
+gem 'js_cookie_rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

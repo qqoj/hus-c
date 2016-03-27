@@ -15,10 +15,15 @@
 //= require turbolinks
 //= require tether
 //= require bootstrap
+//= require js.cookie
 //= require_tree .
 
 $(document).on('ready page:load', function () {
     $('#index').find('tbody.blueprint').on('click', function () {
         $('tbody.materials').filter('[data-type-id=' + $(this).data('type-id') + ']').toggleClass('hidden')
     });
+
+    $('#system').on('change', function () {
+        Cookies.set('system', $(this).val());
+    }).val(Cookies.get('system')).trigger('change');
 });
