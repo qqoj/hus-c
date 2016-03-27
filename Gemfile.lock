@@ -89,6 +89,8 @@ GEM
       mini_portile2 (~> 2.0.0.rc2)
     octicons-rails (2.1.1)
       railties (>= 3.2, < 5.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -181,6 +183,7 @@ DEPENDENCIES
   jquery-rails
   js_cookie_rails
   octicons-rails
+  quiet_assets
   rails (= 4.2.5.1)
   rails-assets-tether (>= 1.1.0)
   rest-client
