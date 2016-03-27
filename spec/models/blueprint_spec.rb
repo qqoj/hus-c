@@ -64,4 +64,59 @@ RSpec.describe Blueprint, type: :model do
       expect(blueprint.products_sell).to eq 7.3
     end
   end
+
+  describe "products_volume" do
+    it "uses products" do
+      create :eve_item, type_id: 1, volume: 0.1
+      create :eve_item, type_id: 2, volume: 0.2
+      create :eve_item, type_id: 3, volume: 0.3
+      create :eve_item, type_id: 5, volume: 0.05
+
+      blueprint = build(:blueprint)
+      products = [
+          {typeID: 1, quantity: 2},
+          {typeID: 2, quantity: 1},
+          {typeID: 3, quantity: 3},
+          {typeID: 4, quantity: 1},
+          {typeID: 5, quantity: 0},
+      ]
+      allow(blueprint).to receive(:products).and_return products
+      expect(blueprint.products_volume).to eq 1.3
+    end
+  end
+
+  describe "time" do
+    it "can be missing" do
+      expect(build(:blueprint, activities: {}).time).to eq 0
+    end
+
+    it "is found from activities" do
+      expect(build(:blueprint, activities: {manufacturing: {time: 23000}}).time).to eq 23000
+    end
+  end
+
+  describe "per_hour" do
+    it "expects time to be in seconds" do
+      blueprint = build(:blueprint)
+      allow(blueprint).to receive(:time).and_return 3600
+      expect(blueprint.per_hour 1).to eq 1
+      allow(blueprint).to receive(:time).and_return 1200
+      expect(blueprint.per_hour 1).to eq 3
+    end
+
+    it "is infinity if time is zero" do
+      blueprint = build(:blueprint)
+      allow(blueprint).to receive(:time).and_return 0
+      expect(blueprint.per_hour 1).to eq 1/0.0 # Infinity
+    end
+  end
+
+  describe "profit" do
+    it "is the diff between products_sell and materials_buy" do
+      blueprint = build(:blueprint)
+      allow(blueprint).to receive(:products_sell).and_return 10
+      allow(blueprint).to receive(:materials_buy).and_return 3
+      expect(blueprint.profit).to eq 7
+    end
+  end
 end
