@@ -11,8 +11,8 @@ class IndexController < ApplicationController
                       .flatten
                       .map { |i| Blueprint.find_by(type_id: i.type_id) }
                       .uniq
+                      .each { |b| b.system = cookies[:system] }
                       .sort_by { |b| -b.per_hour(b.profit) }
-    @blueprints.each { |b| b.system = cookies[:system] }
     render :index
   end
 end
