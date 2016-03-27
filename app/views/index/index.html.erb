@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="card">
       <div class="card-block">
         <%= form_tag search_path do %>
-            <%= text_area_tag :value, example_search, class: 'form-control', style: 'height: 115px;' %>
+            <%= text_area_tag :value, example_search, class: 'form-control', style: 'height: 85px;' %>
             <div class="m-t-1">
               <%= submit_tag 'Search', class: 'btn btn-primary' %>
             </div>
@@ -11,21 +11,37 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-8">
     <div class="card">
       <div class="card-block">
-        <form class="m-t-1">
-          <div class="form-group row m-l-1">
-            <label class="col-xs-2 form-control-label" for="system">System</label>
-            <div class="col-xs-10"><%= select_tag :system, available_systems, class: 'c-select' %></div>
+        <form id="pricing" class="m-l-1">
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="system">System</label>
+            <div class="col-sm-10"><%= select_tag :system, available_systems, class: 'c-select' %></div>
           </div>
-          <div class="form-group row m-l-1">
-            <label class="col-xs-2 form-control-label" for="buy">Materials</label>
-            <div class="col-xs-10"><%= select_tag :buy, available_prices(:buy), class: 'c-select' %></div>
+          <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="materials">Materials</label>
+            <div class="col-sm-10">
+              <%= select_tag :materials, available_prices(:materials), class: 'c-select m-r-2' %>
+              <label class="radio-inline form-control-label">
+                <%= radio_button_tag 'materials-order', :buy %> Buy order
+              </label>
+              <label class="radio-inline form-control-label">
+                <%= radio_button_tag 'materials-order', :sell, true %> Sell order
+              </label>
+            </div>
           </div>
-          <div class="form-group row m-l-1">
-            <label class="col-xs-2 form-control-label" for="sell">Products</label>
-            <div class="col-xs-10"><%= select_tag :sell, available_prices(:sell), class: 'c-select' %></div>
+          <div class="form-group row m-b-0">
+            <label class="col-sm-2 form-control-label" for="products">Products</label>
+            <div class="col-sm-10">
+              <%= select_tag :products, available_prices(:products), class: 'c-select m-r-2' %>
+              <label class="radio-inline form-control-label">
+                <%= radio_button_tag 'products-order', :buy, true %> Buy order
+              </label>
+              <label class="radio-inline form-control-label">
+                <%= radio_button_tag 'products-order', :sell %> Sell order
+              </label>
+            </div>
           </div>
         </form>
 

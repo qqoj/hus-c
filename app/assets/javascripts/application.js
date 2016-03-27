@@ -23,9 +23,17 @@ $(document).on('ready page:load', function () {
         $('tbody.materials').filter('[data-type-id=' + $(this).data('type-id') + ']').toggleClass('hidden')
     });
 
-    [$('#system'), $('#buy'), $('#sell')].forEach(function (select) {
-        select.on('change', function () {
-            Cookies.set(select.attr('name'), $(this).val())
-        }).val(Cookies.get(select.attr('name')) || select.val()).trigger('change');
+    $('#pricing').find('select,input').on('change', function () {
+        console.log($(this).attr('name') + '=' + $(this).val());
+        Cookies.set($(this).attr('name'), $(this).val());
+    }).end().find('select').each(function () {
+        $(this).val(Cookies.get($(this).attr('name')) || $(this).val()).trigger('change');
+    }).end().find('input').each(function () {
+        var cookie = Cookies.get($(this).attr('name'));
+        if (cookie == $(this).val()) {
+            $(this).prop('checked', true);
+            $(this).trigger('change');
+        }
+        if (!cookie && $(this).is(':checked')) $(this).trigger('change');
     });
 });

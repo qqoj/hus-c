@@ -17,6 +17,6 @@ module ApplicationHelper
                            %w(Max max),
                            %w(Median median),
                            %w(Average avg),
-                       ], {buy: 'max', sell: 'min'}[type]
+                       ], {materials: 'min', products: 'max'}[type]
   end
 end
