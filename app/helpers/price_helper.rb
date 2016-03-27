@@ -2,8 +2,10 @@ module PriceHelper
   def price_options
     {
         system: cookies['system'],
-        buy: cookies['buy'],
-        sell: cookies['sell'],
+        materials: cookies['materials'],
+        products: cookies['products'],
+        materials_order: cookies['materials-order'],
+        products_order: cookies['products-order'],
     }
   end
 end

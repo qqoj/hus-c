@@ -86,7 +86,7 @@
               <% b.materials.each do |m| %>
                   <tr>
                     <% eve_item = EveItem.get(m[:typeID]) %>
-                    <% price = EveItem.get(m[:typeID]).try(:price, :buy, price_options) %>
+                    <% price = EveItem.get(m[:typeID]).try(:price, :materials, price_options) %>
                     <% quantity = m[:quantity] %>
                     <td><%= quantity %> x <%= eve_item.try :name %></td>
                     <td></td>

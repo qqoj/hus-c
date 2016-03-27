@@ -13,7 +13,7 @@ class Blueprint < ActiveRecord::Base
 
   def materials_buy
     @materials_buy ||= materials.reduce(0) do |a, m|
-      a + m[:quantity] * (EveItem.get(m[:typeID]).try(:price, :buy, price_options) || 0)
+      a + m[:quantity] * (EveItem.get(m[:typeID]).try(:price, :materials, price_options) || 0)
     end
   end
 
@@ -23,7 +23,7 @@ class Blueprint < ActiveRecord::Base
 
   def products_sell
     @products_sell ||= products.reduce(0) do |a, p|
-      a + p[:quantity] * (EveItem.get(p[:typeID]).try(:price, :sell, price_options) || 0)
+      a + p[:quantity] * (EveItem.get(p[:typeID]).try(:price, :products, price_options) || 0)
     end
   end
 
