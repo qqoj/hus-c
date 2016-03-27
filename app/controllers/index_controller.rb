@@ -9,8 +9,9 @@ class IndexController < ApplicationController
                       .compact
                       .map { |l| EveItem.where(name: "#{l.gsub(/ Blueprint/, '')} Blueprint").to_a }
                       .flatten
-                      .map { |i| Blueprint.find_by type_id: i.type_id }
+                      .map { |i| Blueprint.find_by(type_id: i.type_id) }
                       .uniq
+    @blueprints.each { |b| b.system = cookies[:system] }
     render :index
   end
 end
