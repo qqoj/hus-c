@@ -7,7 +7,8 @@ class IndexController < ApplicationController
   end
 
   def search
-    results = search_by(params[:value])
+    @value = params[:value]
+    results = search_by(@value)
     flash[:notice] = "Too many blueprints, showing first #{LIMIT}" if results.size > LIMIT
     @blueprints = results[0..LIMIT-1]
                       .each { |b| b.price_options = price_options }
