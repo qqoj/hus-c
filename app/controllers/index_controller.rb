@@ -1,11 +1,13 @@
 class IndexController < ApplicationController
+  LIMIT = 10
+
   def index
   end
 
   def search
     results = search_by(params[:value])
-    flash[:notice] = "Too many blueprints, showing first 10" if results.size > 10
-    @blueprints = results[0..9]
+    flash[:notice] = "Too many blueprints, showing first #{LIMIT}" if results.size > LIMIT
+    @blueprints = results[0..LIMIT-1]
                       .each { |b| b.system = cookies[:system] }
                       .sort_by { |b| -b.per_hour(b.profit) }
     render :index
