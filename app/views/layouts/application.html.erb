@@ -12,8 +12,12 @@
   <a class="navbar-brand" href="/">HUS-C</a>
 
   <form class="form-inline pull-xs-right">
-    <label class="m-r-1">System</label>
+    <label class="m-l-2 m-r-1" for="system">System</label>
     <%= select_tag :system, available_systems, class: 'c-select' %>
+    <label class="m-l-2 m-r-1" for="buy">Buy</label>
+    <%= select_tag :buy, available_prices(:buy), class: 'c-select' %>
+    <label class="m-l-2 m-r-1" for="sell">Sell</label>
+    <%= select_tag :sell, available_prices(:sell), class: 'c-select' %>
   </form>
 
 </nav>
