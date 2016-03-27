@@ -4,14 +4,11 @@ class IndexController < ApplicationController
 
   def search
     results = search_by(params[:value])
-    if results.size > 10
-      redirect_to root_url, notice: "Too many blueprints"
-    else
-      @blueprints = results
-                        .each { |b| b.system = cookies[:system] }
-                        .sort_by { |b| -b.per_hour(b.profit) }
-      render :index
-    end
+    flash[:notice] = "Too many blueprints, showing first 10" if results.size > 10
+    @blueprints = results[0..9]
+                      .each { |b| b.system = cookies[:system] }
+                      .sort_by { |b| -b.per_hour(b.profit) }
+    render :index
   end
 
   private
