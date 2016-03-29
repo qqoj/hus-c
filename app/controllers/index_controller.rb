@@ -1,7 +1,7 @@
 class IndexController < ApplicationController
   include PriceHelper
 
-  LIMIT = 10
+  LIMIT = 50
 
   def index
   end
