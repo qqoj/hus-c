@@ -1,9 +1,22 @@
 class Blueprint < ActiveRecord::Base
 
-  @material_efficiency = 0
-  @time_efficiency = 0
+  attr_accessor :price_options, :runs
 
-  attr_accessor :price_options, :material_efficiency, :time_efficiency, :runs
+  def material_efficiency=(percentage)
+    @material_efficiency_percentage = percentage
+  end
+
+  def time_efficiency=(percentage)
+    @time_efficiency_percentage = percentage
+  end
+
+  def material_efficiency
+    efficiency(@material_efficiency_percentage)
+  end
+
+  def time_efficiency
+    efficiency(@time_efficiency_percentage)
+  end
 
   serialize :activities, Hash
 
@@ -17,7 +30,7 @@ class Blueprint < ActiveRecord::Base
 
   def materials_buy
     @materials_buy ||= materials.reduce(0) do |a, m|
-      a + m[:quantity] * (EveItem.get(m[:typeID]).try(:price, :materials, price_options) || 0)
+      a + m[:quantity] * material_efficiency * (EveItem.get(m[:typeID]).try(:price, :materials, price_options) || 0)
     end
   end
 
@@ -36,7 +49,7 @@ class Blueprint < ActiveRecord::Base
   end
 
   def time
-    @time ||= activities.try(:[], :manufacturing).try(:[], :time) || 0
+    @time ||= time_efficiency * (activities.try(:[], :manufacturing).try(:[], :time) || 0)
   end
 
   def per_hour(value)
@@ -45,6 +58,12 @@ class Blueprint < ActiveRecord::Base
 
   def profit
     products_sell - materials_buy
+  end
+
+  private
+
+  def efficiency(percentage)
+    1 - (percentage || 0) / 100.to_f
   end
 
 end

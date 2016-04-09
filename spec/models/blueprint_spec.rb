@@ -31,6 +31,25 @@ RSpec.describe Blueprint, type: :model do
       allow(blueprint).to receive(:materials).and_return materials
       expect(blueprint.materials_buy).to eq 7.3
     end
+
+    it "is affected by material_efficiency" do
+      create :eve_item, type_id: 1, price: 1.1
+      create :eve_item, type_id: 2, price: 1.2
+      create :eve_item, type_id: 3, price: 1.3
+      create :eve_item, type_id: 5, price: 100
+
+      blueprint = build(:blueprint)
+      blueprint.material_efficiency = 10
+      materials = [
+          {typeID: 1, quantity: 2},
+          {typeID: 2, quantity: 1},
+          {typeID: 3, quantity: 3},
+          {typeID: 4, quantity: 1},
+          {typeID: 5, quantity: 0},
+      ]
+      allow(blueprint).to receive(:materials).and_return materials
+      expect(blueprint.materials_buy).to eq 6.57
+    end
   end
 
   describe "products" do
@@ -93,6 +112,12 @@ RSpec.describe Blueprint, type: :model do
     it "is found from activities" do
       expect(build(:blueprint, activities: {manufacturing: {time: 23000}}).time).to eq 23000
     end
+
+    it "is affected by time_efficiency" do
+      blueprint = build(:blueprint, activities: {manufacturing: {time: 23000}})
+      blueprint.time_efficiency = 18
+      expect(blueprint.time).to eq 18860
+    end
   end
 
   describe "per_hour" do
@@ -117,6 +142,28 @@ RSpec.describe Blueprint, type: :model do
       allow(blueprint).to receive(:products_sell).and_return 10
       allow(blueprint).to receive(:materials_buy).and_return 3
       expect(blueprint.profit).to eq 7
+    end
+  end
+
+  describe "material_efficiency" do
+    it "defaults to 1" do
+      expect(build(:blueprint).material_efficiency).to eq(1)
+    end
+
+    it "can be lower than 1" do
+      blueprint = build(:blueprint, material_efficiency: 10)
+      expect(blueprint.material_efficiency).to eq(0.9)
+    end
+  end
+
+  describe "time_efficiency" do
+    it "defaults to 1" do
+      expect(build(:blueprint).time_efficiency).to eq(1)
+    end
+
+    it "can be lower than 1" do
+      blueprint = build(:blueprint, time_efficiency: 20)
+      expect(blueprint.time_efficiency).to eq(0.8)
     end
   end
 end
