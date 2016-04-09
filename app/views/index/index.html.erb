@@ -6,6 +6,7 @@
             <%= text_area_tag :value, @value || example_search, class: 'form-control', style: 'height: 85px;' %>
             <div class="m-t-1">
               <%= submit_tag 'Search', class: 'btn btn-primary' %>
+              <%= link_to 'Corporation', corporation_path, class: 'btn btn-primary pull-xs-right' %>
             </div>
         <% end %>
       </div>
