@@ -20,7 +20,7 @@
 
 $(document).on('ready page:load', function () {
     $('#index').find('tbody.blueprint').on('click', function () {
-        $('tbody.materials').filter('[data-type-id=' + $(this).data('type-id') + ']').toggleClass('hidden')
+        $('tbody.materials').filter('[data-i=' + $(this).data('i') + ']').toggleClass('hidden')
     });
 
     $('#pricing').find('select,input').on('change', function () {

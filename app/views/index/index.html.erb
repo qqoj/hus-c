@@ -69,9 +69,9 @@
             <th class="text-xs-right">Profit/Hour</th>
           </tr>
           </thead>
-          <% @blueprints.each do |b| %>
+          <% @blueprints.each_with_index do |b, i| %>
 
-              <tbody class="blueprint" data-type-id="<%= b.type_id %>">
+              <tbody class="blueprint" data-i="<%= i %>">
               <tr>
                 <td>
                   <% if b.runs == -1 %>
@@ -101,7 +101,7 @@
               </tr>
               </tbody>
 
-              <tbody class="materials hidden" data-type-id="<%= b.type_id %>">
+              <tbody class="materials hidden" data-i="<%= i %>">
               <% b.materials.each do |m| %>
                   <tr>
                     <% eve_item = EveItem.get(m[:typeID]) %>
