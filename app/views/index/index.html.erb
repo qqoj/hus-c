@@ -74,12 +74,10 @@
               <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
                 <td>
-                  <% if b.runs %>
-                      <% if b.runs == -1 %>
-                          <span class="label label-default">Original</span>
-                      <% else %>
-                          <span class="label label-success"><%= b.runs %> runs</span>
-                      <% end %>
+                  <% if b.runs == -1 %>
+                      <span class="label label-default">Original</span>
+                  <% elsif b.runs %>
+                      <span class="label label-success"><%= b.runs %> runs</span>
                   <% end %>
                 </td>
                 <td><%= b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %></td>
