@@ -24,6 +24,7 @@ $border-radius: .15rem !default;
 
 $brand-color: #640000;
 $background-color: #fff;
+$job-color: #eceeef;
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -112,6 +113,15 @@ tbody.blueprint {
     top: -2px;
     left: 2px;
     font-size: 72%;
+  }
+  tbody.has-job, tbody.has-job + tbody {
+    border-top-color: darken($job-color, 10%);
+  }
+  tbody.blueprint.has-job tr {
+    background-color: $job-color;
+    &:hover {
+      background-color: darken($job-color, 1%);
+    }
   }
 }
 

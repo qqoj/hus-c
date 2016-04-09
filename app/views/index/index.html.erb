@@ -101,7 +101,7 @@
               </tr>
               </tbody>
 
-              <tbody class="materials hidden" data-i="<%= i %>">
+              <tbody class="materials hidden<%= ' has-job' if b.job %>" data-i="<%= i %>" data-i="<%= i %>">
               <% b.materials.each do |m| %>
                   <tr>
                     <% eve_item = EveItem.get(m[:typeID]) %>
