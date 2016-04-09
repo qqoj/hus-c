@@ -71,7 +71,7 @@
           </thead>
           <% @blueprints.each_with_index do |b, i| %>
 
-              <tbody class="blueprint" data-i="<%= i %>">
+              <tbody class="blueprint<%= ' has-job' if b.job %>" data-i="<%= i %>">
               <tr>
                 <td>
                   <% if b.runs == -1 %>

@@ -1,6 +1,6 @@
 class Blueprint < ActiveRecord::Base
 
-  attr_accessor :price_options, :runs, :material_efficiency_percentage, :time_efficiency_percentage
+  attr_accessor :price_options, :runs, :job, :material_efficiency_percentage, :time_efficiency_percentage
 
   def material_efficiency
     efficiency(material_efficiency_percentage)
