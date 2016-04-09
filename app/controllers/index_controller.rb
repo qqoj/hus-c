@@ -10,9 +10,12 @@ class IndexController < ApplicationController
     @value = params[:value]
     results = search_by(@value)
     flash[:notice] = "Too many blueprints, showing first #{LIMIT}" if results.size > LIMIT
-    @blueprints = results[0..LIMIT-1]
-                      .each { |b| b.price_options = price_options }
-                      .sort_by { |b| -b.per_hour(b.profit) }
+    @blueprints = out(results[0..LIMIT-1])
+    render :index
+  end
+
+  def corporation
+    @blueprints = out(Corporation.blueprints)
     render :index
   end
 
@@ -27,5 +30,11 @@ class IndexController < ApplicationController
         .flatten
         .map { |i| Blueprint.find_by(type_id: i.type_id) }
         .uniq
+  end
+
+  def out(blueprints)
+    blueprints
+        .each { |b| b.price_options = price_options }
+        .sort_by { |b| -b.per_hour(b.profit) }
   end
 end

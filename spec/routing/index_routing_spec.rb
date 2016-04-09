@@ -10,5 +10,9 @@ RSpec.describe IndexController, type: :routing do
     it "routes to #search" do
       expect(:post => "/").to route_to("index#search")
     end
+
+    it "routes to #corporation" do
+      expect(:get => "/corporation").to route_to("index#corporation")
+    end
   end
 end

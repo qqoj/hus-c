@@ -1,5 +1,9 @@
 class Blueprint < ActiveRecord::Base
-  attr_accessor :price_options
+
+  @material_efficiency = 0
+  @time_efficiency = 0
+
+  attr_accessor :price_options, :material_efficiency, :time_efficiency, :runs
 
   serialize :activities, Hash
 
