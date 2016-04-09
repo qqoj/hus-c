@@ -107,6 +107,12 @@ tbody.blueprint {
   td.text-muted {
     font-weight: 300;
   }
+  .label {
+    position: relative;
+    top: -2px;
+    left: 2px;
+    font-size: 72%;
+  }
 }
 
 #blueprints {

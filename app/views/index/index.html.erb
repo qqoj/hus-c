@@ -58,10 +58,10 @@
           <thead>
           <tr>
             <th>Name</th>
-            <th class="text-muted">Time</th>
+            <th class="text-muted" colspan="2">Time</th>
             <th class="text-xs-right text-muted">Volume</th>
             <th class="text-xs-right text-muted">Volume/Hour</th>
-            <th class="text-xs-right">Material cost</th>
+            <th class="text-xs-right" colspan="2">Material cost</th>
             <th class="text-xs-right">Sell price</th>
             <th class="text-xs-right">Profit</th>
             <th class="text-xs-right">Profit/Hour</th>
@@ -72,9 +72,19 @@
               <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
                 <td><%= b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %></td>
+                <td class="mono text-xs-right">
+                  <% if b.time_efficiency_percentage && b.time_efficiency_percentage > 0 %>
+                      <span class="label label-default"><%= number_to_percentage(b.time_efficiency_percentage, precision: 0) %></span>
+                  <% end %>
+                </td>
                 <td class="text-muted"><%= distance_of_time_in_words b.time %></td>
                 <td class="mono text-xs-right text-muted"><%= number_with_precision(b.products_volume, precision: 2) %> m³</td>
                 <td class="mono text-xs-right text-muted"><%= number_with_precision(b.per_hour(b.products_volume), precision: 2) %> m³</td>
+                <td class="mono">
+                  <% if b.material_efficiency_percentage && b.material_efficiency_percentage > 0 %>
+                      <span class="label label-primary"><%= number_to_percentage(b.material_efficiency_percentage, precision: 0) %></span>
+                  <% end %>
+                </td>
                 <td class="mono text-xs-right"><%= number_to_currency(b.materials_buy) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(b.products_sell) %></td>
                 <td class="mono text-xs-right"><%= number_to_currency(b.profit) %></td>
@@ -88,11 +98,10 @@
                     <% eve_item = EveItem.get(m[:typeID]) %>
                     <% price = EveItem.get(m[:typeID]).try(:price, :materials, price_options) %>
                     <% quantity = m[:quantity] %>
-                    <td><%= quantity %> x <%= eve_item.try :name %></td>
-                    <td></td>
+                    <td colspan="3"><%= quantity %> x <%= eve_item.try :name %></td>
                     <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(quantity * eve_item.volume, precision: 2) : '-' %> m³</td>
                     <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(b.per_hour(quantity * eve_item.volume), precision: 2) : '-' %> m³</td>
-                    <td class="mono text-xs-right"><%= price ? number_to_currency(quantity * price) : '-' %></td>
+                    <td class="mono text-xs-right" colspan="2"><%= price ? number_to_currency(quantity * price) : '-' %></td>
                     <td colspan="3"></td>
                   </tr>
               <% end %>

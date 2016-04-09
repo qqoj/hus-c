@@ -11,8 +11,8 @@ class Corporation
 
   def self.to_blueprint(row)
     blueprint = Blueprint.find_by(type_id: row[:typeID])
-    blueprint.material_efficiency = row[:materialEfficiency].to_i
-    blueprint.time_efficiency = row[:timeEfficiency].to_i
+    blueprint.material_efficiency_percentage = row[:materialEfficiency].to_i
+    blueprint.time_efficiency_percentage = row[:timeEfficiency].to_i
     blueprint.runs = row[:runs].to_i
     blueprint
   end

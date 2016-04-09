@@ -1,21 +1,13 @@
 class Blueprint < ActiveRecord::Base
 
-  attr_accessor :price_options, :runs
-
-  def material_efficiency=(percentage)
-    @material_efficiency_percentage = percentage
-  end
-
-  def time_efficiency=(percentage)
-    @time_efficiency_percentage = percentage
-  end
+  attr_accessor :price_options, :runs, :material_efficiency_percentage, :time_efficiency_percentage
 
   def material_efficiency
-    efficiency(@material_efficiency_percentage)
+    efficiency(material_efficiency_percentage)
   end
 
   def time_efficiency
-    efficiency(@time_efficiency_percentage)
+    efficiency(time_efficiency_percentage)
   end
 
   serialize :activities, Hash

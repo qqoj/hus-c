@@ -39,7 +39,7 @@ RSpec.describe Blueprint, type: :model do
       create :eve_item, type_id: 5, price: 100
 
       blueprint = build(:blueprint)
-      blueprint.material_efficiency = 10
+      blueprint.material_efficiency_percentage = 10
       materials = [
           {typeID: 1, quantity: 2},
           {typeID: 2, quantity: 1},
@@ -115,7 +115,7 @@ RSpec.describe Blueprint, type: :model do
 
     it "is affected by time_efficiency" do
       blueprint = build(:blueprint, activities: {manufacturing: {time: 23000}})
-      blueprint.time_efficiency = 18
+      blueprint.time_efficiency_percentage = 18
       expect(blueprint.time).to eq 18860
     end
   end
@@ -151,7 +151,7 @@ RSpec.describe Blueprint, type: :model do
     end
 
     it "can be lower than 1" do
-      blueprint = build(:blueprint, material_efficiency: 10)
+      blueprint = build(:blueprint, material_efficiency_percentage: 10)
       expect(blueprint.material_efficiency).to eq(0.9)
     end
   end
@@ -162,7 +162,7 @@ RSpec.describe Blueprint, type: :model do
     end
 
     it "can be lower than 1" do
-      blueprint = build(:blueprint, time_efficiency: 20)
+      blueprint = build(:blueprint, time_efficiency_percentage: 20)
       expect(blueprint.time_efficiency).to eq(0.8)
     end
   end
