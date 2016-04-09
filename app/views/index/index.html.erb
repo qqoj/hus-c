@@ -58,6 +58,7 @@
         <table id="blueprints" class="table table-hover table-sm m-b-0">
           <thead>
           <tr>
+            <th>#</th>
             <th>Name</th>
             <th class="text-muted" colspan="2">Time</th>
             <th class="text-xs-right text-muted">Volume</th>
@@ -72,6 +73,15 @@
 
               <tbody class="blueprint" data-type-id="<%= b.type_id %>">
               <tr>
+                <td>
+                  <% if b.runs %>
+                      <% if b.runs == -1 %>
+                          <span class="label label-default">Original</span>
+                      <% else %>
+                          <span class="label label-success"><%= b.runs %> runs</span>
+                      <% end %>
+                  <% end %>
+                </td>
                 <td><%= b.products.map { |p| "#{p[:quantity]} x #{EveItem.get(p[:typeID]).try :name}" }.join %></td>
                 <td class="mono text-xs-right">
                   <% if b.time_efficiency_percentage && b.time_efficiency_percentage > 0 %>
@@ -99,6 +109,7 @@
                     <% eve_item = EveItem.get(m[:typeID]) %>
                     <% price = EveItem.get(m[:typeID]).try(:price, :materials, price_options) %>
                     <% quantity = m[:quantity] %>
+                    <td></td>
                     <td colspan="3"><%= quantity %> x <%= eve_item.try :name %></td>
                     <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(quantity * eve_item.volume, precision: 2) : '-' %> m³</td>
                     <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(b.per_hour(quantity * eve_item.volume), precision: 2) : '-' %> m³</td>
