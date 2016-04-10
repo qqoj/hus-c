@@ -37,3 +37,6 @@ $ git pull && bundle install --without development test && RAILS_ENV=production 
 + Show materials m3 and m3 per hour
 + System-specific prices
 - Show price of the blueprint itself
++ Corporation blueprints
++ Show efficiency
++ Show active jobs
