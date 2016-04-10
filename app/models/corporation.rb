@@ -1,6 +1,6 @@
 class Corporation
-  BLUEPRINTS = "https://api.eveonline.com/corp/Blueprints.xml.aspx?keyID=5145106&vCode=ROEyOw01BXm9XPwmXiwKnHQQDv4uro64IOCm3QdpDyyWYVBIlrlzUUs3qTGhAmsH"
-  JOBS = "https://api.eveonline.com/corp/IndustryJobs.xml.aspx?keyID=5145106&vCode=ROEyOw01BXm9XPwmXiwKnHQQDv4uro64IOCm3QdpDyyWYVBIlrlzUUs3qTGhAmsH"
+  BLUEPRINTS = "https://api.eveonline.com/corp/Blueprints.xml.aspx?keyID=#{ENV['HUSC_API_KEY_ID']}&vCode=#{ENV['HUSC_API_VERIFICATION_CODE']}"
+  JOBS = "https://api.eveonline.com/corp/IndustryJobs.xml.aspx?keyID=#{ENV['HUSC_API_KEY_ID']}&vCode=#{ENV['HUSC_API_VERIFICATION_CODE']}"
 
   def self.blueprints
     jobs = fetch(JOBS).map { |j| j[:blueprintID] }
