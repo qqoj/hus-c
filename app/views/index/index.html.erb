@@ -72,7 +72,7 @@
           <% @blueprints.each_with_index do |b, i| %>
 
               <tbody class="blueprint<%= ' has-job' if b.job %>" data-i="<%= i %>">
-              <tr>
+              <tr data-type-id="<%= b.products.map { |p| p[:typeID] }.join ',' %>">
                 <td>
                   <% if b.runs == -1 %>
                       <span class="label label-default">Original</span>
@@ -103,7 +103,7 @@
 
               <tbody class="materials hidden<%= ' has-job' if b.job %>" data-i="<%= i %>" data-i="<%= i %>">
               <% b.materials.each do |m| %>
-                  <tr>
+                  <tr data-type-id="<%= m[:typeID] %>">
                     <% eve_item = EveItem.get(m[:typeID]) %>
                     <% price = EveItem.get(m[:typeID]).try(:price, :materials, price_options) %>
                     <% quantity = m[:quantity] %>
