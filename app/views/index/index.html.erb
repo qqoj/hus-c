@@ -62,11 +62,9 @@
             <th colspan="2">Name</th>
             <th class="text-muted">Time</th>
             <th class="text-xs-right text-muted">Volume</th>
-            <th class="text-xs-right text-muted">Volume/Hour</th>
             <th class="text-xs-right" colspan="2">Material cost</th>
             <th class="text-xs-right" colspan="3">Sell price</th>
             <th class="text-xs-right">Profit</th>
-            <th class="text-xs-right">Profit/Hour</th>
           </tr>
           </thead>
           <% @blueprints.each_with_index do |b, i| %>
@@ -87,8 +85,10 @@
                   <% end %>
                 </td>
                 <td class="text-muted"><%= distance_of_time_in_words b.time %></td>
-                <td class="mono text-xs-right text-muted"><%= number_with_precision(b.products_volume, precision: 2) %> m³</td>
-                <td class="mono text-xs-right text-muted"><%= number_with_precision(b.per_hour(b.products_volume), precision: 2) %> m³</td>
+                <td class="mono text-xs-right text-muted" data-toggle="tooltip" data-placement="right" data-offset="0px 5px"
+                    title="<%= number_with_precision(b.per_hour(b.products_volume), precision: 2) %> m³ / h">
+                  <%= number_with_precision(b.products_volume, precision: 2) %> m³
+                </td>
                 <td class="mono">
                   <% if b.material_efficiency_percentage && b.material_efficiency_percentage > 0 %>
                       <span class="label label-primary"><%= number_to_percentage(b.material_efficiency_percentage, precision: 0) %></span>
@@ -96,8 +96,10 @@
                 </td>
                 <td class="mono text-xs-right"><%= number_to_currency(b.materials_buy) %></td>
                 <td class="mono text-xs-right" colspan="3"><%= number_to_currency(b.products_sell) %></td>
-                <td class="mono text-xs-right"><%= number_to_currency(b.profit) %></td>
-                <td class="mono text-xs-right"><%= number_to_currency(b.per_hour b.profit) %></td>
+                <td class="mono text-xs-right" data-toggle="tooltip" data-placement="left" data-offset="0px -10px"
+                    title="<%= number_to_currency(b.per_hour b.profit) %> / h">
+                  <%= number_to_currency(b.profit) %>
+                </td>
               </tr>
               </tbody>
 
@@ -109,13 +111,15 @@
                     <% quantity = m[:quantity] %>
                     <td></td>
                     <td colspan="3"><%= quantity %> x <%= eve_item.try :name %></td>
-                    <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(quantity * eve_item.volume, precision: 2) : '-' %> m³</td>
-                    <td class="mono text-xs-right text-muted"><%= eve_item ? number_with_precision(b.per_hour(quantity * eve_item.volume), precision: 2) : '-' %> m³</td>
+                    <td class="mono text-xs-right text-muted" data-toggle="tooltip" data-placement="right"
+                        title="<%= eve_item ? number_with_precision(b.per_hour(quantity * eve_item.volume), precision: 2) : '-' %> m³ / h">
+                      <%= eve_item ? number_with_precision(quantity * eve_item.volume, precision: 2) : '-' %> m³
+                    </td>
                     <td class="mono text-xs-right" colspan="2"><%= price ? number_to_currency(quantity * price) : '-' %></td>
                     <td class="mono">=</td>
                     <td class="mono"><%= quantity %> x</td>
                     <td class="mono text-xs-right text-market"><%= number_to_currency(price) %></td>
-                    <td colspan="2"></td>
+                    <td></td>
                   </tr>
               <% end %>
               </tbody>
