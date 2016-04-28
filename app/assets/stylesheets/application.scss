@@ -25,6 +25,7 @@ $border-radius: .15rem !default;
 $brand-color: #640000;
 $background-color: #fff;
 $job-color: #eceeef;
+$market-color: #e50000;
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -107,6 +108,9 @@ tbody.blueprint {
   }
   td.text-muted {
     font-weight: 300;
+  }
+  td.text-market {
+    color: $brand-color;
   }
   .label {
     position: relative;
