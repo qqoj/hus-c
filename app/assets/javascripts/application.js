@@ -37,5 +37,5 @@ $(document).on('ready page:load', function () {
         if (!cookie && $(this).is(':checked')) $(this).trigger('change');
     });
 
-    $('#blueprints').find('td[title]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip({container: 'body'});
 });
