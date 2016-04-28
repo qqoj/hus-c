@@ -63,7 +63,7 @@
             <th class="text-muted">Time</th>
             <th class="text-xs-right text-muted">Volume</th>
             <th class="text-xs-right" colspan="2">Material cost</th>
-            <th class="text-xs-right" colspan="3">Sell price</th>
+            <th class="text-xs-right" colspan="2">Price</th>
             <th class="text-xs-right">Profit</th>
           </tr>
           </thead>
@@ -95,7 +95,7 @@
                   <% end %>
                 </td>
                 <td class="mono text-xs-right"><%= number_to_currency(b.materials_buy) %></td>
-                <td class="mono text-xs-right" colspan="3"><%= number_to_currency(b.products_sell) %></td>
+                <td class="mono text-xs-right" colspan="2"><%= number_to_currency(b.products_sell) %></td>
                 <td class="mono text-xs-right" data-toggle="tooltip" data-placement="left" data-offset="0px -10px"
                     title="<%= number_to_currency(b.per_hour b.profit) %> / h">
                   <%= number_to_currency(b.profit) %>
@@ -116,8 +116,7 @@
                       <%= eve_item ? number_with_precision(quantity * eve_item.volume, precision: 2) : '-' %> m³
                     </td>
                     <td class="mono text-xs-right" colspan="2"><%= price ? number_to_currency(quantity * price) : '-' %></td>
-                    <td class="mono">=</td>
-                    <td class="mono"><%= quantity %> x</td>
+                    <td class="mono">= <%= quantity %> x</td>
                     <td class="mono text-xs-right text-market"><%= number_to_currency(price) %></td>
                     <td></td>
                   </tr>
