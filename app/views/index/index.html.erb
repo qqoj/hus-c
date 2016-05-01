@@ -26,10 +26,10 @@
             <div class="col-sm-10">
               <%= select_tag :materials, available_prices(:materials), class: 'c-select m-r-2' %>
               <label class="radio-inline form-control-label">
-                <%= radio_button_tag 'materials-order', :buy %> Buy order
+                <%= radio_button_tag 'materials-order', :buy, true %> Buy order
               </label>
               <label class="radio-inline form-control-label">
-                <%= radio_button_tag 'materials-order', :sell, true %> Sell order
+                <%= radio_button_tag 'materials-order', :sell %> Sell order
               </label>
             </div>
           </div>
@@ -38,10 +38,10 @@
             <div class="col-sm-10">
               <%= select_tag :products, available_prices(:products), class: 'c-select m-r-2' %>
               <label class="radio-inline form-control-label">
-                <%= radio_button_tag 'products-order', :buy, true %> Buy order
+                <%= radio_button_tag 'products-order', :buy %> Buy order
               </label>
               <label class="radio-inline form-control-label">
-                <%= radio_button_tag 'products-order', :sell %> Sell order
+                <%= radio_button_tag 'products-order', :sell, true %> Sell order
               </label>
             </div>
           </div>
